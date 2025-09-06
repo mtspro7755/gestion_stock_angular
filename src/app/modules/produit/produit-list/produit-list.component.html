@@ -1,0 +1,88 @@
+<div class="card p-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="fw-bold">Liste des produits</h4>
+
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-primary" routerLink="/produits/ajout" routerLinkActive="true">
+        <i class="fas fa-plus"></i> Ajouter une produit
+      </button>
+    </div>
+
+
+  </div>
+
+  <div class="d-flex align-items-center gap-1">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Rechercher un produit..."
+      [(ngModel)]="searchTerm"
+      class="search"
+    />
+
+    <div class="gap" ></div>
+
+    <span class="text-muted">{{ produits.length }} éléments</span>
+  </div>
+
+  <div class="gap" >
+
+  </div>
+
+  <!-- Tableau -->
+  <!-- Tableau -->
+  <table class="table table-hover align-middle">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom</th>
+      <th>Année modèle</th>
+      <th>Prix départ (€)</th>
+      <th>Catégorie</th>
+      <th>Marque</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let produit of produits; let i = index">
+      <td># {{ produit.id }}</td>
+      <td><strong>{{ produit.nom }}</strong></td>
+      <td class="text-center">{{ produit.anneeModel }}</td>
+      <td>{{ produit.prixDepart | currency:'EUR' }}</td>
+      <td>{{ produit.categorie.nom }}</td>
+      <td>{{ produit.marque.nom }}</td>
+
+
+      <td class="text-center">
+        <div ngbDropdown>
+
+          <!-- Bouton 3 points -->
+          <button class="btn btn-sm btn-outline-secondary rounded-circle" id="dropdownMenu" ngbDropdownToggle>
+            <i class="fas fa-ellipsis-h"></i>
+          </button>
+
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem class="text-primary"
+                    [routerLink]="['/produits', produit.id]">
+              <i class="fas fa-eye me-2"></i> Voir
+            </button>
+            <button ngbDropdownItem class="text-success"
+                    [routerLink]="['/produits/edit', produit.id]">
+              <i class="fas fa-edit me-2"></i> Modifier
+            </button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem class="text-danger"
+                    (click)="onSupprimer(produit)">
+              <i class="fas fa-trash-alt me-2"></i> Supprimer
+            </button>
+          </div>
+        </div>
+      </td>
+
+
+
+    </tr>
+    </tbody>
+  </table>
+</div>

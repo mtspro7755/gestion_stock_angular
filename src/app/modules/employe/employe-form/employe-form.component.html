@@ -1,0 +1,105 @@
+<div class="card p-4">
+  <h2 class="mb-4">
+    {{ isEditMode ? 'Modifier un employé' : 'Nouvel employé' }}
+  </h2>
+
+  <form [formGroup]="employeForm" (ngSubmit)="onSubmit()">
+    <!-- Nom -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="nom">Nom *</label>
+        <input
+          type="text"
+          id="nom"
+          class="form-control"
+          formControlName="nom"
+          placeholder="Ex: Dupont"
+        >
+      </div>
+    </div>
+
+    <!-- Prénom -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="prenom">Prénom *</label>
+        <input
+          type="text"
+          id="prenom"
+          class="form-control"
+          formControlName="prenom"
+          placeholder="Ex: Jean"
+        >
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="email">Email *</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Ex: jean.dupont@email.com"
+        >
+      </div>
+    </div>
+
+    <!-- Téléphone -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="telephone">Téléphone *</label>
+        <input
+          type="text"
+          id="telephone"
+          class="form-control"
+          formControlName="telephone"
+          placeholder="Ex: +221 77 123 45 67"
+        >
+      </div>
+    </div>
+
+    <!-- Magasin -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="magasin">Magasin *</label>
+        <select id="magasin" class="form-select" formControlName="magasin">
+          <option value="">-- Sélectionner un magasin --</option>
+          <option *ngFor="let m of magasins" [value]="m.id">{{ m.nom }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Manager -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="manager">Manager</label>
+        <select id="manager" class="form-select" formControlName="manager">
+          <option value="">-- Aucun manager --</option>
+          <option *ngFor="let e of managers" [value]="e.id">
+            {{ e.prenom }} {{ e.nom }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <div class="d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn btn-light me-2"
+        (click)="onCancel()"
+      >
+        Annuler
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="employeForm.invalid"
+      >
+        {{ isEditMode ? 'Modifier' : 'Créer' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,109 @@
+<div class="card p-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="fw-bold">Liste des magasins</h4>
+
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-primary" routerLink="/magasins/ajout" routerLinkActive="true">
+        <i class="fas fa-plus"></i> Ajouter un magasin
+      </button>
+    </div>
+
+
+  </div>
+
+  <div class="d-flex align-items-center gap-1">
+    <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher un magasin..."
+        [(ngModel)]="searchTerm"
+        class="search"
+      />
+    <span class="text-muted">{{ magasins.length }} éléments</span>
+  </div>
+
+  <div class="gap" >
+
+  </div>
+
+  <!-- Tableau -->
+  <!-- Tableau -->
+  <table class="table table-hover align-middle">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom</th>
+      <th>Adresse</th>
+      <th>Contact</th>
+      <th>État</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let magasin of magasins; let i = index">
+      <td># {{ magasin.id }}</td>
+      <td>
+        <i class="fas fa-store text-primary"></i>
+        <strong>{{ magasin.nom }}</strong>
+      </td>
+      <td>
+        <i class="fas fa-map-marker-alt text-muted"></i>
+        {{ magasin.adresse }}, {{ magasin.codeZip }} {{ magasin.ville }}
+      </td>
+      <td>
+        <i class="fas fa-phone text-muted"></i> {{ magasin.telephone }} <br />
+        <i class="fas fa-envelope text-muted"></i> {{ magasin.email }}
+      </td>
+      <td>
+          <span
+            class="badge"
+            [ngClass]="magasin.etat === 'Actif' ? 'bg-success' : 'bg-secondary'"
+          >
+            {{ magasin.etat }}
+          </span>
+      </td>
+
+
+      <td>
+        <div ngbDropdown>
+          <!-- Bouton 3 points -->
+          <button class="btn btn-sm btn-outline-secondary rounded-circle" id="dropdownMenu" ngbDropdownToggle>
+            <i class="fas fa-ellipsis-h"></i>
+          </button>
+
+          <!-- Menu déroulant -->
+          <div ngbDropdownMenu aria-labelledby="dropdownMenu" class="shadow-sm">
+
+            <!-- Voir -->
+            <button
+              ngbDropdownItem
+              class="text-primary"
+              [routerLink]="['/magasins', magasin.id]">
+              <i class="fas fa-eye me-2"></i> Voir
+            </button>
+
+            <!-- Modifier -->
+            <button
+              ngbDropdownItem
+              class="text-success"
+              [routerLink]="['/magasins/edit',magasin.id]"
+            >
+              <i class="fas fa-edit me-2"></i> Modifier
+            </button>
+
+            <div class="dropdown-divider"></div>
+
+            <!-- Supprimer -->
+            <button ngbDropdownItem class="text-danger" (click)="onSupprimer(magasin)">
+              <i class="fas fa-trash-alt me-2"></i> Supprimer
+            </button>
+          </div>
+        </div>
+      </td>
+
+
+    </tr>
+    </tbody>
+  </table>
+</div>

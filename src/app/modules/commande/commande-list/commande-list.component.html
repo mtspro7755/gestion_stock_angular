@@ -1,0 +1,91 @@
+<div class="card p-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="fw-bold">Liste des commandes</h4>
+
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-primary" routerLink="/commandes/ajout" routerLinkActive="true">
+        <i class="fas fa-plus"></i> Ajouter une commande
+      </button>
+    </div>
+
+
+  </div>
+
+  <div class="d-flex align-items-center gap-1">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Rechercher une commande..."
+      [(ngModel)]="searchTerm"
+      class="search"
+    />
+
+    <div class="gap" ></div>
+
+    <span class="text-muted">{{ commandes.length }} éléments</span>
+  </div>
+
+  <div class="gap" >
+
+  </div>
+
+  <!-- Tableau -->
+  <table class="table table-hover align-middle">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th class="text-center">Status</th>
+      <th>Date commande</th>
+      <th>Date livraison</th>
+      <th>Date livraison voulue</th>
+      <th>Client</th>
+      <th>Magasin</th>
+      <th>Vendeur</th>
+      <th class="text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let commande of commandes; let i = index">
+      <td># {{ commande.id }}</td>
+      <td>{{ commande.status }}</td>
+      <td><strong>{{ commande.dateCommande }}</strong></td>
+      <td>{{ commande.dateLivraison }}</td>
+      <td>{{ commande.dateLivraisonVoulue}}</td>
+      <td>{{ commande.client?.prenom }}</td>
+      <td>{{ commande.magasin?.nom }}</td>
+      <td>{{ commande.vendeur?.prenom }}</td>
+
+
+      <td class="text-center">
+        <div ngbDropdown>
+
+          <!-- Bouton 3 points -->
+          <button class="btn btn-sm btn-outline-secondary rounded-circle" id="dropdownMenu" ngbDropdownToggle>
+            <i class="fas fa-ellipsis-h"></i>
+          </button>
+
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem class="text-primary"
+                    [routerLink]="['/commandes', commande.id]">
+              <i class="fas fa-eye me-2"></i> Voir
+            </button>
+            <button ngbDropdownItem class="text-success"
+                    [routerLink]="['/commandes/edit', commande.id]">
+              <i class="fas fa-edit me-2"></i> Modifier
+            </button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem class="text-danger"
+                    (click)="onSupprimer(commande)">
+              <i class="fas fa-trash-alt me-2"></i> Supprimer
+            </button>
+          </div>
+        </div>
+      </td>
+
+
+
+    </tr>
+    </tbody>
+  </table>
+</div>

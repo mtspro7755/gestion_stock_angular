@@ -1,0 +1,19 @@
+<div class="card p-4 shadow-sm" *ngIf="categorie">
+  <h2 class="mb-3 text-primary">{{ categorie.nom }}</h2>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Nom:</strong> {{ categorie.nom }}</li>
+  </ul>
+
+  <div class="mt-4 d-flex justify-content-end">
+    <button class="btn btn-outline-secondary me-2" (click)="onRetour()">
+      <i class="fas fa-arrow-left"></i> Retour
+    </button>
+    <button class="btn btn-success me-2">
+      <i class="fas fa-edit"></i> Modifier
+    </button>
+    <button class="btn btn-danger">
+      <i class="fas fa-trash-alt"></i> Supprimer
+    </button>
+  </div>
+</div>

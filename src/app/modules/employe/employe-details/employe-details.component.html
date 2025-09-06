@@ -1,0 +1,26 @@
+<div class="card p-4 shadow-sm" *ngIf="employe">
+  <h2 class="mb-3 text-primary">{{ employe.nom }}</h2>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Prenom:</strong> {{ employe.prenom }}</li>
+    <li class="list-group-item"><strong>Nom:</strong> {{ employe.nom }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{employe.email }}</li>
+    <li class="list-group-item"><strong>Telephone:</strong> {{ employe.telephone }}</li>
+    <li class="list-group-item"><strong>Magasin:</strong> {{  employe.magasin?.nom }}</li>
+    <li class="list-group-item"><strong>Manager:</strong> {{  employe.manager?.nom }}</li>
+  </ul>
+
+
+
+  <div class="mt-4 d-flex justify-content-end">
+    <button class="btn btn-outline-secondary me-2" (click)="onRetour()">
+      <i class="fas fa-arrow-left"></i> Retour
+    </button>
+    <button class="btn btn-success me-2">
+      <i class="fas fa-edit"></i> Modifier
+    </button>
+    <button class="btn btn-danger">
+      <i class="fas fa-trash-alt"></i> Supprimer
+    </button>
+  </div>
+</div>

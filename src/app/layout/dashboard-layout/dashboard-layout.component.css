@@ -1,0 +1,34 @@
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar fixe à gauche */
+app-sidebar {
+  width: 250px;
+  background: #fff;
+  border-right: 1px solid #eee;
+}
+
+/* Partie droite (header + contenu) */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header en haut */
+app-header {
+  height: 80px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+
+/* Contenu du dashboard */
+.page-content {
+  flex: 1;
+  padding: 1.5rem;
+  background: #f9f9fc;
+  overflow-y: auto;
+}

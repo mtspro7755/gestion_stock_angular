@@ -1,0 +1,89 @@
+<div class="card p-4">
+  <h2 class="mb-4">
+    {{ isEditMode ? 'Modifier un produit' : 'Nouveau produit' }}
+  </h2>
+
+  <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+    <!-- Nom -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="nom">Nom du produit *</label>
+        <input
+          type="text"
+          id="nom"
+          class="form-control"
+          formControlName="nom"
+          placeholder="Ex: iPhone 15"
+        >
+      </div>
+    </div>
+
+    <!-- Année -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="anneeModel">Année du modèle *</label>
+        <input
+          type="number"
+          id="anneeModel"
+          class="form-control"
+          formControlName="anneeModel"
+          placeholder="Ex: 2025"
+        >
+      </div>
+    </div>
+
+    <!-- Prix -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="prixDepart">Prix de départ *</label>
+        <input
+          type="number"
+          id="prixDepart"
+          class="form-control"
+          formControlName="prixDepart"
+          placeholder="Ex: 1200"
+        >
+      </div>
+    </div>
+
+    <!-- Marque -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="marque">Marque *</label>
+        <select id="marque" class="form-select" formControlName="marque">
+          <option value="">-- Sélectionner une marque --</option>
+          <option *ngFor="let m of marques" [value]="m.id">{{ m.nom }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Catégorie -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="categorie">Catégorie *</label>
+        <select id="categorie" class="form-select" formControlName="categorie">
+          <option value="">-- Sélectionner une catégorie --</option>
+          <option *ngFor="let c of categories" [value]="c.id">{{ c.nom }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <div class="d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn btn-light me-2"
+        (click)="onCancel()"
+      >
+        Annuler
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="produitForm.invalid"
+      >
+        {{ isEditMode ? 'Modifier' : 'Créer' }}
+      </button>
+    </div>
+  </form>
+</div>

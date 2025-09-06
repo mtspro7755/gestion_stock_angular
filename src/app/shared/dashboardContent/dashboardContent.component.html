@@ -1,0 +1,84 @@
+<div class="dashboard-stats">
+  <!-- Produits -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <span>Total Produits</span>
+      <i class="fas fa-box"></i>
+    </div>
+    <div class="stat-value">{{ totalProduits }}</div>
+    <div class="stat-trend">
+      <i class="fas fa-arrow-up"></i> +12% ce mois
+    </div>
+  </div>
+
+  <!-- Clients -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <span>Clients Actifs</span>
+      <i class="fas fa-users"></i>
+    </div>
+    <div class="stat-value">{{ totalClients }}</div>
+    <div class="stat-trend">
+      <i class="fas fa-arrow-up"></i> +8% ce mois
+    </div>
+  </div>
+
+  <!-- Commandes -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <span>Commandes</span>
+      <i class="fas fa-shopping-cart"></i>
+    </div>
+    <div class="stat-value">{{ totalCommandes }}</div>
+    <div class="stat-trend">
+      <i class="fas fa-arrow-up"></i> +15% ce mois
+    </div>
+  </div>
+
+  <!-- Magasins -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <span>Magasins</span>
+      <i class="fas fa-store"></i>
+    </div>
+    <div class="stat-value">{{ totalMagasins }}</div>
+    <div class="stat-trend">
+      <i class="fas fa-arrow-up"></i> +3% ce mois
+    </div>
+  </div>
+</div>
+
+<!-- Actions rapides -->
+<div class="quick-actions-card">
+  <h3>Actions rapides</h3>
+
+  <div class="quick-actions">
+    <button class="quick-btn blue" routerLink="/produits/ajout">
+      <i class="fas fa-box"></i>
+      Ajouter un produit
+    </button>
+
+    <button class="quick-btn purple" routerLink="/clients/ajout">
+      <i class="fas fa-users"></i>
+      Nouveau client
+    </button>
+
+    <button class="quick-btn outline" routerLink="/commandes/ajout">
+      <i class="fas fa-shopping-cart"></i>
+      Créer commande
+    </button>
+  </div>
+</div>
+
+<!-- Alertes stock -->
+<div class="stock-alerts-card" *ngIf="stockAlerts.length > 0">
+  <h3>
+    <i class="fas fa-exclamation-triangle"></i>
+    Alertes de stock
+  </h3>
+
+  <div *ngFor="let alert of stockAlerts" class="alert-item">
+    <span>{{ alert.nom }} - Stock faible</span>
+    <span class="alert-qty">{{ alert.quantite }} unités</span>
+  </div>
+</div>

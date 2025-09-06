@@ -1,0 +1,115 @@
+<div class="card p-4">
+  <h2 class="mb-4">
+    {{ isEditMode ? 'Modifier une commande' : 'Nouvelle commande' }}
+  </h2>
+
+  <form [formGroup]="commandeForm" (ngSubmit)="onSubmit()">
+
+    <!-- Status -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="status">Statut *</label>
+        <select id="status" class="form-select" formControlName="status">
+          <option value="">-- Sélectionner un statut --</option>
+          <option [value]="0">En cours</option>
+          <option [value]="1">Livrée</option>
+          <option [value]="2">Annulée</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Date commande -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="dateCommande">Date commande *</label>
+        <input
+          type="date"
+          id="dateCommande"
+          class="form-control"
+          formControlName="dateCommande"
+        >
+      </div>
+    </div>
+
+    <!-- Date livraison -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="dateLivraison">Date livraison</label>
+        <input
+          type="date"
+          id="dateLivraison"
+          class="form-control"
+          formControlName="dateLivraison"
+        >
+      </div>
+    </div>
+
+    <!-- Date livraison voulue -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="dateLivraisonVoulue">Date livraison voulue</label>
+        <input
+          type="date"
+          id="dateLivraisonVoulue"
+          class="form-control"
+          formControlName="dateLivraisonVoulue"
+        >
+      </div>
+    </div>
+
+    <!-- Client -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="client">Client *</label>
+        <select id="client" class="form-select" formControlName="client">
+          <option value="">-- Sélectionner un client --</option>
+          <option *ngFor="let c of clients" [value]="c.id">
+            {{ c.prenom }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Magasin -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="magasin">Magasin *</label>
+        <select id="magasin" class="form-select" formControlName="magasin">
+          <option value="">-- Sélectionner un magasin --</option>
+          <option *ngFor="let m of magasins" [value]="m.id">{{ m.nom }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Vendeur -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="vendeur">Vendeur *</label>
+        <select id="vendeur" class="form-select" formControlName="vendeur">
+          <option value="">-- Sélectionner un vendeur --</option>
+          <option *ngFor="let v of vendeurs" [value]="v.id">
+            {{ v.prenom }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <div class="d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn btn-light me-2"
+        (click)="onCancel()"
+      >
+        Annuler
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="commandeForm.invalid"
+      >
+        {{ isEditMode ? 'Modifier' : 'Créer' }}
+      </button>
+    </div>
+  </form>
+</div>
