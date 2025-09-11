@@ -1,1 +1,51 @@
-<p>stock-form works!</p>
+<div class="card p-4">
+  <h2 class="mb-4">
+    {{ isEditMode ? 'Modifier un stock' : 'Nouveau stock' }}
+  </h2>
+
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <!-- Produit -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="produit">Produit *</label>
+        <select id="produit" class="form-select" formControlName="produit">
+          <option value="">-- Sélectionner un produit --</option>
+          <option *ngFor="let p of produits" [value]="p.id">{{ p.nom }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Magasin -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="magasin">Magasin *</label>
+        <select id="magasin" class="form-select" formControlName="magasin">
+          <option value="">-- Sélectionner un magasin --</option>
+          <option *ngFor="let m of magasins" [value]="m.id">{{ m.nom }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Quantité -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="quantite">Quantité *</label>
+        <input
+          type="number"
+          id="quantite"
+          class="form-control"
+          formControlName="quantite"
+          placeholder="150"
+        >
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-light me-2" (click)="onCancel()">Annuler</button>
+      <button type="submit" class="btn btn-primary" [disabled]="stockForm.invalid">
+        {{ isEditMode ? 'Modifier' : 'Créer' }}
+      </button>
+    </div>
+  </form>
+</div>

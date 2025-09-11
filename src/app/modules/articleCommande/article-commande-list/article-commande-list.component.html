@@ -1,11 +1,11 @@
 <div class="card p-4">
   <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h4 class="fw-bold">Liste des stocks</h4>
+    <h4 class="fw-bold">Liste des articles commandes</h4>
 
     <div class="d-flex align-items-center gap-3">
-      <button class="btn btn-primary" routerLink="/stocks/ajout" routerLinkActive="true">
-        <i class="fas fa-plus"></i> Ajouter une stock
+      <button class="btn btn-primary" routerLink="/articleCommandes/ajout" routerLinkActive="true">
+        <i class="fas fa-plus"></i> Ajouter une article commande
       </button>
     </div>
 
@@ -16,14 +16,14 @@
     <input
       type="text"
       class="form-control"
-      placeholder="Rechercher un stock..."
+      placeholder="Rechercher une article commande..."
       [(ngModel)]="searchTerm"
       class="search"
     />
 
     <div class="gap" ></div>
 
-    <span class="text-muted">{{ stocks.length }} éléments</span>
+    <span class="text-muted">{{ articleCommandes.length }} éléments</span>
   </div>
 
   <div class="gap" >
@@ -31,26 +31,28 @@
   </div>
 
   <!-- Tableau -->
-  <!-- Tableau -->
   <table class="table table-hover align-middle">
     <thead>
     <tr>
       <th>#</th>
+      <th>Prix depart</th>
+      <th>Quantite</th>
+      <th>Remise Decimal</th>
       <th>Produit</th>
-      <th>Magasin</th>
-      <th>Quantité</th>
-      <th>Actions</th>
+      <th>Commande</th>
+      <th class="text-center">Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let stock of stocks; let i = index">
-      <td>#{{ i+1 }}</td>
-      <td>{{ stock.produit.nom }}</td>
-      <td>{{ stock.magasin.nom }}</td>
-      <td>{{ stock.quantite }}</td>
+    <tr *ngFor="let articleCommande of articleCommandes; let i = index">
+      <td># {{ articleCommande.id }}</td>
+      <td>{{ articleCommande.prixDepart }}</td>
+      <td><strong>{{ articleCommande.quantite }}</strong></td>
+      <td>{{ articleCommande.remiseDecimal }}</td>
+      <td>{{ articleCommande.produit.nom}}</td>
+      <td>{{ articleCommande.commande.nom }}</td>
 
-
-      <td >
+      <td class="text-center">
         <div ngbDropdown>
 
           <!-- Bouton 3 points -->
@@ -60,16 +62,16 @@
 
           <div ngbDropdownMenu>
             <button ngbDropdownItem class="text-primary"
-                    [routerLink]="['/stocks', stock.magasin.id, stock.produit.id]">
+                    [routerLink]="['/articleCommandes', articleCommande.id]">
               <i class="fas fa-eye me-2"></i> Voir
             </button>
             <button ngbDropdownItem class="text-success"
-                    [routerLink]="['/stocks/edit',stock.magasin.id, stock.produit.id]">
+                    [routerLink]="['/articleCommandes/edit', articleCommande.id]">
               <i class="fas fa-edit me-2"></i> Modifier
             </button>
             <div class="dropdown-divider"></div>
             <button ngbDropdownItem class="text-danger"
-                    (click)="onSupprimer(stock)">
+                    (click)="onSupprimer(articleCommande)">
               <i class="fas fa-trash-alt me-2"></i> Supprimer
             </button>
           </div>

@@ -58,7 +58,7 @@ export class CommandeFormComponent implements OnInit {
     // Vérifier si on est en mode EDIT
     this.commandeId = Number(this.route.snapshot.paramMap.get('id'));
     if (this.commandeId) {
-      this.isEditMode = true; // ✅ très important
+      this.isEditMode = true; //  très important
       this.commandeService.getById(this.commandeId).subscribe(data => {
         this.commandeForm.patchValue({
           status: data.status,

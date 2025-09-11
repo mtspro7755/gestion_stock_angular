@@ -22,6 +22,18 @@ import {EmployeFormComponent} from "./modules/employe/employe-form/employe-form.
 import {CommandeListComponent} from "./modules/commande/commande-list/commande-list.component";
 import {CommandeFormComponent} from "./modules/commande/commande-form/commande-form.component";
 import {CommandeDetailsComponent} from "./modules/commande/commande-details/commande-details.component";
+import {
+  ArticleCommandeListComponent
+} from "./modules/articleCommande/article-commande-list/article-commande-list.component";
+import {
+  ArticleCommandeFormComponent
+} from "./modules/articleCommande/article-commande-form/article-commande-form.component";
+import {
+  ArticleCommandeDetailsComponent
+} from "./modules/articleCommande/article-commande-details/article-commande-details.component";
+import {StockListComponent} from "./modules/stock/stock-list/stock-list.component";
+import {StockFormComponent} from "./modules/stock/stock-form/stock-form.component";
+import {StockDetailsComponent} from "./modules/stock/stock-details/stock-details.component";
 
 export const routes: Routes = [
   {
@@ -66,6 +78,18 @@ export const routes: Routes = [
       {path: 'commandes/ajout', component: CommandeFormComponent},
       {path:'commandes/:id', component: CommandeDetailsComponent},
       {path:'commandes/edit/:id', component: CommandeFormComponent},
+
+      {path:'articleCommendes', component: ArticleCommandeListComponent},
+      {path: 'articleCommendes/ajout', component: ArticleCommandeFormComponent},
+      {path:'articleCommendes/:id', component: ArticleCommandeDetailsComponent},
+      {path: 'articleCommendes/edit/:id', component: ArticleCommandeFormComponent},
+
+      {path:'stocks', component: StockListComponent},
+      {path: 'stocks/ajout', component: StockFormComponent},
+      {path:'stocks/:magasinId/:produitId', component: StockDetailsComponent},
+      {path: 'stocks/edit/:magasinId/:produitId', component: StockFormComponent},
+
+
 
 
     ]

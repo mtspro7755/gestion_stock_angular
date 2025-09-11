@@ -1,21 +1,22 @@
 export interface Stock {
+  id: StockId;
+  magasin:Magasin;
+  produit:Produit;
+  quantite:number;
+}
 
+export interface StockId{
+  magasinId: number;
+  produitId: number;
 }
 
 
-/*
-@EmbeddedId
-private StockId id;
+export interface Produit {
+  id: number;
+  nom?: string;
+}
 
-@ManyToOne
-@MapsId("magasinId")
-@JoinColumn(name = "magasin_id")
-private Magasin magasin;
-
-@ManyToOne
-@MapsId("produitId")
-@JoinColumn(name = "produit_id")
-private Produit produit;
-
-@Column(nullable = false)
-private int quantite;*/
+export interface Magasin {
+  id: number;
+  nom?: string;
+}

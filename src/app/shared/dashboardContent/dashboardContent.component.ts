@@ -5,6 +5,7 @@ import {CommandeService} from "../../modules/commande/commande.service";
 import {MagasinService} from "../../modules/magasin/magasin.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {StockService} from "../../modules/stock/stock.service";
 
 @Component({
   selector: 'app-dashboardContent',
@@ -31,7 +32,8 @@ export class DashboardContentComponent implements OnInit {
     private produitService: ProduitService,
     private clientService: ClientService,
     private commandeService: CommandeService,
-    private magasinService: MagasinService
+    private magasinService: MagasinService,
+    private stockService : StockService
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,17 @@ export class DashboardContentComponent implements OnInit {
         .filter((p: any) => p.stock <= 5)
         .map((p: any) => ({ nom: p.nom, quantite: p.stock }));
     });
+
+
+    this.stockService.getAll().subscribe(data => {
+      this.stockAlerts = data
+        .filter((s: any) => s.quantite <= 5)
+        .map((s: any) => ({
+          nom: s.produit.nom + " (" + s.magasin.nom + ")", // afficher produit + magasin
+          quantite: s.quantite
+        }));
+    });
+
 
     this.clientService.getAll().subscribe(data => {
       this.totalClients = data.length;
